@@ -1,13 +1,4 @@
-const mongoose=require('mongoose')
-const usershema = new mongoose.schema({
-
-})
-
-
-const userShmea = new mongoose.shema({
-})
-
-
+const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     user_name:{
 

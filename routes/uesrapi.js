@@ -1,6 +1,6 @@
-const express=require('express')
-const router=express.Router()
-const user=require('../models/user')
+const express=require('express');
+const router = express.Router();
+const user = require('./user')
 router.post('/adduser',async(req,res)=>{
 try{
 
@@ -20,4 +20,38 @@ catch(error){
 res.status(500).json({'error':error})
 }
 })
+
+
+router.get('/viewuser',async(req,res)=>{
+
+try {
+    
+const user = await user.find()
+res.json(user)
+
+
+
+
+} catch (error) {
+   res.status(500).json({'Error':error}) 
+}
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
 module.exports = router;

@@ -11,7 +11,7 @@ mongoose.connect.on('connected',()=>{
 })
 
 
-ongoose.connect.on('error',(err)=>{
+mongoose.connect.on('error',(err)=>{
 
 
 
@@ -21,4 +21,4 @@ ongoose.connect.on('error',(err)=>{
 
 
 
-module.exports=mongoose
+module.exports = mongoose
