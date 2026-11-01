@@ -1,6 +1,10 @@
+// Api CRUD Operation
+
 const express=require('express');
 const router = express.Router();
 const user = require('./user')
+
+// Add Data Api
 router.post('/adduser',async(req,res)=>{
 try{
 
@@ -22,6 +26,9 @@ res.status(500).json({'error':error})
 })
 
 
+
+// Read data api
+
 router.get('/viewuser',async(req,res)=>{
 
 try {
@@ -30,24 +37,37 @@ const user = await user.find()
 res.json(user)
 
 
-
-
 } catch (error) {
    res.status(500).json({'Error':error}) 
 }
-
-
-
-
-
-
-
-
-
 })
 
 
 
+//update Api
+
+
+router.put('/updateuser/:userid',async (req,res)=>{
+
+const userid = req.params.userid
+
+try {
+
+
+
+    const users =await  users.findByIdAndUpdate(
+       uid,
+       {$set:req.body},
+       {new:true}
+    )
+    res.json(users)
+} catch (error) {
+    res.status(500).json({'error':error})
+    
+}
+
+
+})
 
 
 
