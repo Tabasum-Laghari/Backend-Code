@@ -72,6 +72,26 @@ try {
 
 
 
+// delet Api
+
+router.delete('/deleteuser/:userid',async(req,res)=>{
+
+const uid = req.params.userid
+try {
+
+const users=await User.findByIdAndDelete(uid)
+res.status(200).json({'msg':'user Id deleted','sts':'1'})
+    
+} catch (error) {
+
+
+    res.status(500).json({'error':error})
+}
+
+
+})
+
+
 
 
 module.exports = router;
