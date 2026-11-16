@@ -1,0 +1,14 @@
+
+#Rest Clinet used when we have not postmen  for sending Api
+
+GET  https://localhost:500/api/user/adduser
+content-type: application/json
+
+POST  https://localhost:500/api/user/adduser
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "testuser@example.com",
+
+}

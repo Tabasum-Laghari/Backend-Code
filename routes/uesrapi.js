@@ -2,7 +2,18 @@
 
 const express=require('express');
 const router = express.Router();
-const user = require('./user')
+const path = require ('path');
+const user = require('./user');
+
+// uplodad image with Multer.
+const storage = multler.diskstorage({destination:'./uploads/',filename:function(req,file,cb){cb(null,filename+""+Date.now()+".png")}})
+const upload = multer({storage:storage,limits:{filesize:1000000}});
+router.post('/upload',upload.single('image'),(req,res)=>{
+    res.json({'msg':'image uploaded'})
+}
+
+
+
 
 // Add Data Api
 router.post('/adduser',async(req,res)=>{
@@ -31,6 +42,7 @@ res.status(500).json({'error':error})
 
 router.get('/viewuser',async(req,res)=>{
 
+
 try {
     
 const user = await user.find()
@@ -40,6 +52,7 @@ res.json(user)
 } catch (error) {
    res.status(500).json({'Error':error}) 
 }
+
 })
 
 
@@ -49,7 +62,7 @@ res.json(user)
 
 router.put('/updateuser/:userid',async (req,res)=>{
 
-const userid = req.params.userid
+const useremail = req.params.user_email
 
 try {
 
