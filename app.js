@@ -1,18 +1,30 @@
-const express=require('express')
-const  bodyParser = require('body-parser')
-const cors = require ('cors')
 
+require("dotenv").config();
 
-const db = require('./db')
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-const app  = express()
-const port= process.env.PORT||500
+const db = require("./db");
+const userRoutes = require("./routes");
 
-app.use(cors())
-app.use(bodyParser.json())
+const app = express();
+const port = process.env.PORT || 5000;
 
-app.get('/',(req,res)=>{
-res.send("Hello Taj");})
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(port,()=>{
-console.log(`server is running on port : http://localhost: ${port}`)})
+// CRUD routes
+app.use("/", userRoutes);
+
+// Home route
+app.get("/", (req, res) => {
+    res.send("Hello Taj");
+});
+
+// Start server
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});

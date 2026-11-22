@@ -1,4 +1,6 @@
+
 const mongoose = require('mongoose');
+
 const userSchema = new mongoose.Schema({
     user_name:{
 
@@ -8,25 +10,22 @@ const userSchema = new mongoose.Schema({
 
     },
 
-
-    user_email:{
-
-
-        type:email,
-        required:true
+    user_email: {
+        type: String,
+        required: true,
+        unique: true
     },
 
-    gender:{
-    type:String,
+    gender: {
+        type: String,
+        enum: ["male", "female"],
+        default: "male"
+    },
 
-    enum:['male','female'],
-    default : Male
-}
+    password: {
+        type: String,
+        required: true
+    }
+});
 
-
-
-
-})
-
-
-module.exports = moongoe.modal('db___user',userShmea)
+module.exports = mongoose.model("db___user", userSchema);
